@@ -1,0 +1,96 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}<title>Contact</title>{% endblock title %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/contact.css' %}">{% endblock head %}
+
+{% block content %}
+<div class="show">
+    <div class="img">
+        <img src="{% static 'images/Contact/contact-bg.jpg' %}">
+    </div>
+    <div class="text">
+        <h2>Contact Us</h2>
+        <div class="bel">
+            <a href="{% url 'home' %}">
+                <h4>Home</h4>
+            </a>
+            <p>></p>
+
+            <h4>Contact Us</h4>
+        </div>
+    </div>
+</div>
+
+<div class="sub1">
+    <div class="headbox">
+        <div class="ourservice">
+            <p>CONTACT US</p>
+        </div>
+        <div class="head2-sub1">
+            <h3>Our Headquarters Location</h3>
+        </div>
+    </div>
+    <div class="content">
+        <div class="text">
+            <div class="text1">
+                <div class="head">
+                    <img src="{% static 'images/englend-flag.jpg' %}" alt="england">
+                    <h2>North Leighaport</h2>
+                </div>
+                <p>Suite 794 49823 Glover Fields, North Leighaport, MO</p>
+            </div>
+            <div class="text1">
+                <div class="head">
+                    <img src="{% static 'images/canada-flag.jpg' %}" alt="england">
+                    <h2>Canada</h2>
+                </div>
+                <p>Apt. 228 9976 Lesch Meadows, Yerview, RI 49061-3911</p>
+            </div>
+            <div class="text1">
+                <div class="head">
+                    <img src="{% static 'images/usa-flag.jpg' %}" alt="england">
+                    <h2>Schroederland</h2>
+                </div>
+                <p>13th Street, 47 W 13th St, New York, NY 10011, USA</p>
+            </div>
+            <div class="text1">
+                <div class="head">
+                    <img src="{% static 'images/englend-flag.jpg' %}" alt="england">
+                    <h2>New Zealand</h2>
+                </div>
+                <p>32729 White Canyon, Lake Cornellhaven, AL 19490-6873</p>
+            </div>
+        </div>
+        <div class="img">
+            <img src="{% static 'images/Maps.png' %}" alt="map">
+        </div>
+    </div>
+</div>
+<div class="sub2">
+    <div class="formm">
+
+    </div>
+    <div class="card">
+        <h2>Say Hii to LoanEase</h2>
+        <img src="{% static 'images/contact-from-image.png' %}" alt="">
+        <p>Have questions about your loan options? Our team is here to help! Whether you're seeking guidance on loan
+            products.
+        </p>
+        <p>We're committed to providing personalized support.
+            Reach out today and let's take the next step towards securing the financing you need.
+        </p>
+
+        <h3>Social media</h3>
+        <div class="icons">
+            <i class="fa-brands fa-facebook-f"></i>
+            <i class="fa-brands fa-x-twitter"></i>
+            <i class="fa-brands fa-instagram"></i>
+            <i class="fa-brands fa-linkedin-in"></i>
+            
+        </div>
+    </div>
+</div>
+{% endblock content %}

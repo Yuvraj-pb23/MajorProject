@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+
+    {% block title %}<title>Personal Loan</title>{% endblock title %}
+      
+    {% block head %}<link rel="stylesheet" href="{% static 'css/Services/personal.css' %}">{% endblock head %}
+
+    {% block content %}
+    <div class="show">
+        <div class="img">
+            <img src="{% static 'images/Contact/contact-bg.jpg' %}">
+        </div>
+        <div class="text">
+            <h2>Personal Loan</h2>
+            <div class="bel">
+                <a href="{% url 'home' %}">
+                    <h4>Home</h4>
+                </a>
+                <p>></p>
+
+                <h4>Personal Loan</h4>
+
+            </div>
+        </div>
+    </div>
+    {% endblock content %}
