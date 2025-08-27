@@ -141,9 +141,9 @@
 .formm textarea {
     padding-top: 15px;
     width: 800px;
-    margin: 15px 40px;
+    margin: 15px 10px;
     border: none;
-    border-bottom: 1px solid rgb(173, 172, 172);
+   
     padding-bottom: 10px;
     background-color: transparent;
     font-size: 16px;
@@ -163,4 +163,13 @@
 .formm textarea {
     font-family: "DM Sans", system-ui;
     font-size: 17px;
+}
+
+.formm .name, .formm .place{
+    margin-left: 20px;
+     border-bottom: 1px solid rgb(173, 172, 172);
+}
+.place i{
+    position:relative;
+    bottom:82px;
 }
