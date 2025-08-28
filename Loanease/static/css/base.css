@@ -12,6 +12,10 @@
     margin: 0px 100px;
     padding: 25px;
 }
+body {
+    font-family: "DM Sans", system-ui;
+}
+
 .navbar .links{
     display: flex;
     align-items: center;
@@ -154,7 +158,7 @@
 .cons {
     border-left: 1px solid black;
     padding-left: 30px;
-    width:250px;
+    width: 262px;
     display: flex;
 
 }

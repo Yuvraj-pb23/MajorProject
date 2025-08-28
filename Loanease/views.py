@@ -1,11 +1,34 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from . models import Customer
+from . models import ContactForm
 
 def home(request):
     return render(request,'home.html')
+
 def contact(request):
-    return render(request,'contact.html')
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        contact_num = request.POST.get('contact')
+        email = request.POST.get('email')
+        loantype = request.POST.get('loantype')
+        message = request.POST.get('message')
+
+        # Only save if all required fields are present
+        if name and contact_num and email and loantype and message:
+            # Validate contact number is exactly 10 digits
+            if not (contact_num.isdigit() and len(contact_num) == 10):
+                return render(request, 'contact.html', {'error': 'Contact number must be exactly 10 digits.'})
+            try:
+                rslt = ContactForm(name=name, contact=contact_num, email=email, loantype=loantype, message=message)
+                rslt.save()
+                return render(request, 'contact.html', {'success': True})
+            except Exception as e:
+                return render(request, 'contact.html', {'error': str(e)})
+        else:
+            return render(request, 'contact.html', {'error': 'All fields are required.'})
+    return render(request, 'contact.html')
+
 def portfolio(request):
     return render(request,'portfolio.html')
 def viewmore(request):

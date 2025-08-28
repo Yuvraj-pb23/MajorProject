@@ -74,41 +74,54 @@
 </div>
 <div class="sub2">
     <div class="formm">
-        <form action="" method="post">
+        <form action="{% url 'contact' %}" method="POST">
+            {% csrf_token %}
             <div class="name">
                 <label><i class="fa-regular fa-user"></i></label>
-                <input type="text" placeholder="Your Name">
+                <input type="text" placeholder="Your Name" name="name">
             </div>
 
             <div class="name">
-                <label><i class="fa-regular fa-user"></i></label>
-                <input type="number" placeholder="Your Mobile Number">
+                <label><i class="fa-solid fa-phone"></i></label>
+                <input type="number" placeholder="Your Mobile Number" name="contact">
             </div>
 
             <div class="name">
-                <label><i class="fa-regular fa-user"></i></label>
-                <input type="Email" placeholder="Your Email">
+                <label><i class="fa-regular fa-envelope"></i></label>
+                <input type="Email" placeholder="Your Email" name="email">
             </div>
 
             <div class="name">
-                <label><i class="fa-regular fa-user"></i></label>
-                <select class="form-select" aria-label="Default select example">
-                    <option selected>Loan Type</option>
-                    <option value="1">Personal Loan</option>
-                    <option value="2">Business Loan</option>
-                    <option value="3">Student Loan</option>
-                    <option value="4">Emergency Loan</option>
-                    <option value="5">Mortgage Loan</option>
-                    <option value="6">Small Business Loan</option>
+                <label><i class="fa-solid fa-layer-group"></i></label>
+                <select class="form-select" aria-label="Default select example" name="loantype">
+                    <option value="personal">Personal Loan</option>
+                    <option value="business">Business Loan</option>
+                    <option value="student">Student Loan</option>
+                    <option value="emergency">Emergency Loan</option>
+                    <option value="mortgage">Mortgage Loan</option>
+                    <option value="smbusiness">Small Business Loan</option>
                 </select>
             </div>
 
             <div class="place">
-                <label><i class="fa-regular fa-user"></i></label>
-                <textarea cols="40" rows="10" aria-invalid="false" placeholder="Your Message Here" name="textarea"
+                <label><i class="fa-solid fa-message"></i></label>
+                <textarea cols="40" rows="10" aria-invalid="false" placeholder="Your Message Here" name="message"
                     style="height: 100px;"></textarea>
             </div>
 
+            <div class="view-btn">
+                <button type="submit">
+                    Get a Quote
+                    <i class="fa-solid fa-arrow-right arrow"></i>
+                </button>
+            </div>
+
+            {% if success %}
+                <div class="alert alert-success">Your message has been sent successfully!</div>
+            {% endif %}
+            {% if error %}
+                <div class="alert alert-danger">{{ error }}</div>
+            {% endif %}
         </form>
     </div>
 
