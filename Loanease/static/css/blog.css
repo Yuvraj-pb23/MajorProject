@@ -6,12 +6,13 @@
 }
 .cardcontainer{
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap:wrap;
     gap: 30px;
     align-items: center;
-    display: flex;
-    justify-content: center;
     margin: 80px;
+}
+.cardcontainer .card{
+    width:423px;
 }
 .cardcontainer .card .date{
     display: flex;
@@ -21,9 +22,92 @@
 }
 .card .date p{
     color: white;
-    padding:14px 5px;
+    padding:14px 15px;
+}
+.card .text{
+    border:1px solid rgb(189, 189, 189);
+    background-color: #F2F4F8;
+    padding: 40px;
 }
 .card .text p{
-    padding:20px;
-    font-size: 16px;
+    font-size: 20px;
+    line-height: 1.5;
+}
+.card .arrow{
+    margin-top: 20px;
+}
+.card .arrow a {
+    color: #0f1011;
+    font-size: 23px;
+    padding: 12px;
+    background-color: #F2F4F8;
+    border-radius: 50%;
+    border:1px solid black;
+
+    margin: 0px 0px;
+    display: inline-block;
+    transition: transform 0.4s ease;
+    transform-origin: center center;
+}
+.card:hover .arrow a {
+    background-color: rgba(255, 255, 255, 0.2);
+    transform: rotate(-45deg);
+}
+.Sub-Container8 {
+    height: 500px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    background-color: #F2F4F8;
+}
+
+.Sub-Container8 .inner {
+    height: 300px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.contt {
+    width: 1320px;
+    height: 100%;
+    justify-content: space-between;
+    display: flex;
+}
+
+.contt .left {
+    width: 66.66%;
+    height: 300px;
+    padding: 0px 12px;
+    text-align: left;
+}
+
+.contt .left .title {
+    font-size: 45px;
+    text-align: left;
+    font-weight: 700;
+    padding-bottom: 50px;
+}
+
+.contt .right {
+    width: 25%;
+    height: 300px;
+    padding: 0px 12px;
+}
+
+.contt .left .view-btn {
+    background-color: #000;
+    color: white;
+}
+
+.contt .left .view-btn::before {
+    background-color: #ffffff;
+
+}
+
+.contt .left .view-btn:hover {
+
+    color: rgb(0, 0, 0);
 }

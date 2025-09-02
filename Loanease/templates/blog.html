@@ -1,104 +1,150 @@
 {% extends 'base.html' %}
 {% load static %}
 
-    {% block title %}<title>Blog</title>{% endblock title %}
-      
-    {% block head %}
-    <link rel="stylesheet" href="{% static 'css/blog.css' %}">
-    <link rel="stylesheet" href="{% static 'css/base.css' %}">
-    {% endblock head %}
+{% block title %}<title>Blog</title>{% endblock title %}
 
-    {% block content %}
-    <div class="show">
-        <div class="img">
-            <img src="{% static 'images/blog-hero-bg.jpg' %}">
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/blog.css' %}">
+<link rel="stylesheet" href="{% static 'css/base.css' %}">
+{% endblock head %}
+
+{% block content %}
+<div class="show">
+    <div class="img">
+        <img src="{% static 'images/blog-hero-bg.jpg' %}">
+    </div>
+    <div class="text">
+        <h2>Blog</h2>
+        <div class="bel">
+            <a href="{% url 'home' %}">
+                <h4>Home</h4>
+            </a>
+            <p>></p>
+
+            <h4>Blog</h4>
+
         </div>
+    </div>
+</div>
+
+<div class="cardcontainer">
+    <div class="card">
+        <img src="{% static 'images/blog-image-1.jpg' %}" alt="card 1">
+
+        <div class="date">
+            <p>By Admin</p>
+            <p>On 17 jan 2025</p>
+        </div>
+
         <div class="text">
-            <h2>Blog</h2>
-            <div class="bel">
-                <a href="{% url 'home' %}">
-                    <h4>Home</h4>
+            <p>Achieving Financial Freedom: Loanlift Proven Strategies</p>
+
+            <div class="arrow">
+                <a href="">
+                    <i class="fa-solid fa-arrow-right"></i>
                 </a>
-                <p>></p>
-
-                <h4>Blog</h4>
-
             </div>
         </div>
     </div>
+    <div class="card">
+        <img src="{% static 'images/blog-image-2.jpg' %}" alt="card 2">
 
-    <div class="cardcontainer">
-        <div class="card">
-            <img src="{% static 'images/blog-image-1.jpg' %}" alt="card1">
-            
-            <div class="date">
-                <p>By Admin</p>
-                <p>On 17 jan 2025</p>
-            </div>
-
-            <div class="text">
-                <p>Achieving Financial Freedom: Loanlift Proven Strategies</p>
-            </div>
+        <div class="date">
+            <p>By Admin</p>
+            <p>On 17 jan 2025</p>
         </div>
-        <div class="card">
-            <img src="{% static 'images/blog-image-1.jpg' %}" alt="card1">
-            
-            <div class="date">
-                <p>By Admin</p>
-                <p>On 17 jan 2025</p>
-            </div>
 
-            <div class="text">
-                <p>Achieving Financial Freedom: Loanlift Proven Strategies</p>
-            </div>
-        </div>
-        <div class="card">
-            <img src="{% static 'images/blog-image-1.jpg' %}" alt="card1">
-            
-            <div class="date">
-                <p>By Admin</p>
-                <p>On 17 jan 2025</p>
-            </div>
+        <div class="text">
+            <p>A Beginner’s Guide to Securing Your First Loan</p>
 
-            <div class="text">
-                <p>Achieving Financial Freedom: Loanlift Proven Strategies</p>
-            </div>
-        </div>
-        <div class="card">
-            <img src="{% static 'images/blog-image-1.jpg' %}" alt="card1">
-            
-            <div class="date">
-                <p>By Admin</p>
-                <p>On 17 jan 2025</p>
-            </div>
-
-            <div class="text">
-                <p>Achieving Financial Freedom: Loanlift Proven Strategies</p>
-            </div>
-        </div>
-        <div class="card">
-            <img src="{% static 'images/blog-image-1.jpg' %}" alt="card1">
-            
-            <div class="date">
-                <p>By Admin</p>
-                <p>On 17 jan 2025</p>
-            </div>
-
-            <div class="text">
-                <p>Achieving Financial Freedom: Loanlift Proven Strategies</p>
-            </div>
-        </div>
-        <div class="card">
-            <img src="{% static 'images/blog-image-1.jpg' %}" alt="card1">
-            
-            <div class="date">
-                <p>By Admin</p>
-                <p>On 17 jan 2025</p>
-            </div>
-
-            <div class="text">
-                <p>Achieving Financial Freedom: Loanlift Proven Strategies</p>
+            <div class="arrow">
+                <a href="">
+                    <i class="fa-solid fa-arrow-right"></i>
+                </a>
             </div>
         </div>
     </div>
+    <div class="card">
+        <img src="{% static 'images/blog-image-3.jpg' %}" alt="card 3">
+
+        <div class="date">
+            <p>By Admin</p>
+            <p>On 17 jan 2025</p>
+        </div>
+
+        <div class="text">
+            <p>Improve Your Credit Score Before Applying for a Loan</p>
+
+            <div class="arrow">
+                <a href="">
+                    <i class="fa-solid fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="card">
+        <img src="{% static 'images/blog-image-4.jpg' %}" alt="card 4">
+
+        <div class="date">
+            <p>By Admin</p>
+            <p>On 17 jan 2025</p>
+        </div>
+
+        <div class="text">
+            <p>5 Common Loan Application Mistakes to Avoid</p>
+
+            <div class="arrow">
+                <a href="">
+                    <i class="fa-solid fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="card">
+        <img src="{% static 'images/blog-image-5.jpg' %}" alt="card 5">
+
+        <div class="date">
+            <p>By Admin</p>
+            <p>On 17 jan 2025</p>
+        </div>
+
+        <div class="text">
+            <p>The Benefits of Fixed vs. Variable Loan Interest Rates</p>
+
+            <div class="arrow">
+                <a href="">
+                    <i class="fa-solid fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="Sub-Container8">
+    <div class="inner">
+        <div class="contt">
+            <div class="left">
+                <div class="title">
+                    <p>
+                        We build trust with our customers by combining creativity with tailored business
+                        loan solutions.
+                    </p>
+
+                </div>
+                <div class="view-btn">
+                    <a href="{% url 'contact' %}">
+                        Contact us
+                        <i class="fa-solid fa-arrow-right arrow"></i>
+                    </a>
+                </div>
+
+            </div>
+            <div class="right">
+                <img src="{% static 'images/cta-Logo.png' %}">
+
+            </div>
+
+        </div>
+
+    </div>
+
     {% endblock content %}
