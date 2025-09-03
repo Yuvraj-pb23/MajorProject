@@ -1,3 +1,51 @@
+/* Responsive Styles */
+@media (max-width: 1200px) {
+    .cardcontainer {
+        margin: 30px;
+        gap: 15px;
+    }
+    .cardcontainer .card {
+        width: 90vw;
+    }
+    .cardcontainer .card img {
+        width: 100%;
+        height: 220px;
+    }
+}
+
+@media (max-width: 900px) {
+    .cardcontainer {
+        flex-direction: column;
+        margin: 10px;
+        gap: 10px;
+    }
+    .cardcontainer .card {
+        width: 98vw;
+    }
+    .cardcontainer .card img {
+        width: 100%;
+        height: 180px;
+    }
+}
+
+@media (max-width: 600px) {
+    .cardcontainer {
+        flex-direction: column;
+        margin: 2px;
+        gap: 5px;
+    }
+    .cardcontainer .card {
+        width: 100vw;
+    }
+    .cardcontainer .card img {
+        width: 100%;
+        height: 120px;
+    }
+    .card .text {
+        padding: 10px;
+        font-size: 14px;
+    }
+}
 .cardcontainer .card img{
     height:331px;
     width: 423px;

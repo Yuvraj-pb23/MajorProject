@@ -1,3 +1,47 @@
+/* Responsive Styles */
+@media (max-width: 1200px) {
+    .container1, .container2 {
+        flex-direction: column;
+        height: auto;
+    }
+    .topbar1 {
+        width: 100%;
+        font-size: 18px;
+        padding: 30px 10px 20px 10px;
+    }
+}
+
+@media (max-width: 900px) {
+    .container1, .container2 {
+        flex-direction: column;
+        height: auto;
+    }
+    .topbar1 {
+        width: 100%;
+        font-size: 16px;
+        padding: 20px 5px 10px 5px;
+    }
+    .container2 {
+        flex-direction: column;
+        height: auto;
+    }
+}
+
+@media (max-width: 600px) {
+    .container1, .container2 {
+        flex-direction: column;
+        height: auto;
+        padding: 0 2px;
+    }
+    .topbar1 {
+        width: 100%;
+        font-size: 14px;
+        padding: 10px 2px 5px 2px;
+    }
+    .topbar1 img {
+        width: 25px;
+    }
+}
 /* ============================
    GLOBAL STYLES & RESET
    ============================ */

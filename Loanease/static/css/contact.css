@@ -1,3 +1,53 @@
+/* Responsive Styles */
+@media (max-width: 1200px) {
+    .sub1 .content {
+        flex-direction: column;
+        margin: 0px 10px;
+    }
+    .sub1 img {
+        width: 100%;
+        max-width: 400px;
+    }
+}
+
+@media (max-width: 900px) {
+    .sub1 .content {
+        flex-direction: column;
+        margin: 0px 2px;
+    }
+    .sub1 img {
+        width: 100%;
+        max-width: 300px;
+    }
+    .head2-sub1 {
+        width: 100%;
+        font-size: 28px;
+    }
+}
+
+@media (max-width: 600px) {
+    .sub1 {
+        height: auto;
+        padding: 10px 0;
+    }
+    .sub1 .content {
+        flex-direction: column;
+        margin: 0px 0px;
+    }
+    .sub1 img {
+        width: 100%;
+        max-width: 200px;
+    }
+    .head2-sub1 {
+        width: 100%;
+        font-size: 18px;
+        padding: 0;
+    }
+    .sub2 {
+        flex-direction: column;
+        gap: 20px;
+    }
+}
 
 
 .sub1 {

@@ -1,3 +1,41 @@
+/* Responsive Styles */
+@media (max-width: 900px) {
+    .container {
+        min-height: 500px;
+        padding: 10px;
+    }
+    .box {
+        width: 90vw;
+        padding: 15px;
+    }
+    .head h2 {
+        font-size: 28px;
+    }
+    .form2, .btn {
+        width: 100%;
+    }
+}
+
+@media (max-width: 600px) {
+    .container {
+        min-height: 300px;
+        padding: 2px;
+    }
+    .box {
+        width: 98vw;
+        padding: 8px;
+    }
+    .head h2 {
+        font-size: 20px;
+    }
+    .form2, .btn {
+        width: 100%;
+        font-size: 14px;
+    }
+    .form input {
+        width: 90vw;
+    }
+}
 * {
     font-family: sans-serif;
     margin: 0;
