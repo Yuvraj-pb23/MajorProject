@@ -929,7 +929,7 @@ body {
 
 /* Background Images for Each Service Box */
 .service-box:nth-child(1)::before {
-    background-image: url('../IMAGES/personal.jpg');
+    background-image: url('../images/personal.jpg');
 }
 
 .service-box:nth-child(2)::before {
