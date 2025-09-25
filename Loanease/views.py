@@ -68,6 +68,8 @@ def signup(request):
     return render(request,'signup.html')
 def login(request):
     return render(request,'login.html')
+def Dashboard(request):
+    return render(request,'Dashboard/Dash.html')
 
 def customerDetails(request):
 

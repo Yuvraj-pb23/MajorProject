@@ -96,7 +96,7 @@
         height: auto !important;
     }
 }
-/* Responsive Styles */
+
 @media (max-width: 1200px) {
     .container1, .container2 {
         flex-direction: column;
@@ -174,7 +174,7 @@ body {
 .topbar1 {
     text-align: center;
     font-size: 23px;
-    padding: 50px 33px 40px 33px;
+    padding: 50px 24px 40px;
     border-bottom: 0.2px solid white;
     height: 130px;
     display: flex;
@@ -258,7 +258,7 @@ body {
     border-left: none;
     border-right: none;
     max-height: 50px;
-    width: 250px;
+    width: 263px;
     text-align: right;
     background-color: #061525;
     color: white;
