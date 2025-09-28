@@ -1,20 +1,60 @@
 <!DOCTYPE html>
 {% load static %}
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="{% static 'images/favicon.ico' %}"
+    />
+    <script
+      src="https://kit.fontawesome.com/cfaaf9864a.js"
+      crossorigin="anonymous"
+    ></script>
     <title>Document</title>
-    <link rel="stylesheet" href="{%static 'css/Dashboard/Dash.css'%}">
-</head>
-<body>
-<div class="Container-main">
-    <div class="subcontainer1">
+    <link rel="stylesheet" href="{%static 'css/Dashboard/Dash.css'%}" />
+  </head>
+  <body>
+    <div class="Container-main">
+      <div class="subcontainer1">
         <div class="navbar">
-            
-        </div>
-    </div>
-</div>
+          <div class="logo">
+            <span
+              ><a href="{% url 'home' %}"
+                ><img src="{% static 'images/logoblue.png' %}" alt="icon"
+              /></a>
+            </span>
+          </div>
 
-</body>
+          <div class="mainmenu">
+            <ul class="dropdown">
+              <li><a href="#">Vaults</a></li>
+              <li><a href="#">Loans</a></li>
+              <li><a href="#">Wallets</a></li>
+            </ul>
+          </div>
+
+          <div class="options">
+            <i class="fa-solid fa-magnifying-glass search" id="searchIcon"></i>
+            <i class="fa-solid fa-gear"></i>
+            <i class="fa-solid fa-moon"></i>
+          </div>
+
+          <div class="accinfo">
+            <i class="fa-solid fa-user"></i>
+          </div>
+        </div>
+        <div class="controls">
+          <div class="borrow">
+
+          </div>
+          <div class="collateral">
+            
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
 </html>
