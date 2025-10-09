@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verify Your Email - LoanEase</title>
+    <link rel="stylesheet" href="{% static 'css/oauth.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="logo-container">
+        <img src="{% static 'images/Loaneaselogo.png' %}" alt="Loanease Logo" class="page-logo">
+    </div>
+    
+    <div class="home-button-container">
+        <a href="{% url 'home' %}" class="home-btn">
+            <i class="fas fa-home"></i>
+            <span>Home</span>
+        </a>
+    </div>
+
+    <div class="page-wrapper">
+        <div class="oauth-container">
+            <!-- Left Section - Email Verification Info -->
+            <div class="left-section">
+                <div class="content-overlay">
+                    <div class="brand-content">
+                        <i class="fas fa-envelope-open-text welcome-icon"></i>
+                        <h1>Check Your Email</h1>
+                        <p>We've sent a verification link to secure your account and ensure your email is valid.</p>
+                        <div class="security-features">
+                            <div class="feature">
+                                <i class="fas fa-shield-alt"></i>
+                                <span>Account Security</span>
+                            </div>
+                            <div class="feature">
+                                <i class="fas fa-check-double"></i>
+                                <span>Email Verification</span>
+                            </div>
+                            <div class="feature">
+                                <i class="fas fa-lock"></i>
+                                <span>Protected Access</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Section - Verification Instructions -->
+            <div class="right-section">
+                <div class="form-container">
+                    <div class="connection-header">
+                        <div class="google-logo">
+                            <i class="fas fa-envelope-circle-check" style="font-size: 3rem; color: #3b82f6;"></i>
+                        </div>
+                        <h2>Verify Your Email Address</h2>
+                        <p>To complete your registration, please check your email and click the verification link.</p>
+                    </div>
+
+                    {% if messages %}
+                    <div class="messages">
+                        {% for message in messages %}
+                        <div class="message {{ message.tags }}">
+                            <i class="fas {% if message.tags == 'error' %}fa-times-circle{% else %}fa-info-circle{% endif %}"></i>
+                            {{ message }}
+                        </div>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+
+                    <div class="connection-content">
+                        <div class="permissions-info">
+                            <h3>Next Steps:</h3>
+                            <ul class="permissions-list">
+                                <li>
+                                    <i class="fas fa-envelope"></i>
+                                    <span>Check your email inbox</span>
+                                </li>
+                                <li>
+                                    <i class="fas fa-mouse-pointer"></i>
+                                    <span>Click the verification link</span>
+                                </li>
+                                <li>
+                                    <i class="fas fa-sign-in-alt"></i>
+                                    <span>Complete your login</span>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="connection-actions">
+                            <form method="post" class="connection-form">
+                                {% csrf_token %}
+                                <button type="submit" class="connect-btn">
+                                    <i class="fas fa-paper-plane"></i>
+                                    Resend Verification Email
+                                </button>
+                            </form>
+                        </div>
+
+                        <div class="alternative-actions">
+                            <a href="{% url 'login' %}" class="back-link">
+                                <i class="fas fa-arrow-left"></i>
+                                Back to Login
+                            </a>
+                            <a href="{% url 'signup' %}" class="signup-link">
+                                Try a different email
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="security-notice">
+                        <i class="fas fa-info-circle"></i>
+                        <p>If you don't see the email in your inbox, please check your spam folder. The verification link will expire in 24 hours.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Add loading state to resend button
+        document.addEventListener('DOMContentLoaded', function() {
+            const resendBtn = document.querySelector('.connect-btn');
+            if (resendBtn) {
+                resendBtn.addEventListener('click', function() {
+                    this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+                    this.disabled = true;
+                    
+                    // Re-enable after 3 seconds to prevent spam
+                    setTimeout(() => {
+                        this.innerHTML = '<i class="fas fa-paper-plane"></i> Resend Verification Email';
+                        this.disabled = false;
+                    }, 3000);
+                });
+            }
+        });
+    </script>
+</body>
+</html>

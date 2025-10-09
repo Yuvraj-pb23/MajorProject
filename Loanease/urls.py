@@ -24,6 +24,7 @@ urlpatterns = [
 
     path('signup/', views.signup, name='signup'),
     path('login/', views.login, name='login'),
+    path('oauth-debug/', views.oauth_debug, name='oauth_debug'),
     path('Dash/', views.Dashboard, name='Dash'),
     path('Customer/', views.customerDetails, name='Customer'),
 ]

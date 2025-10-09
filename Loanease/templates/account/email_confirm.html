@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Verified - LoanEase</title>
+    <link rel="stylesheet" href="{% static 'css/oauth.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="logo-container">
+        <img src="{% static 'images/Loaneaselogo.png' %}" alt="Loanease Logo" class="page-logo">
+    </div>
+    
+    <div class="home-button-container">
+        <a href="{% url 'home' %}" class="home-btn">
+            <i class="fas fa-home"></i>
+            <span>Home</span>
+        </a>
+    </div>
+
+    <div class="page-wrapper">
+        <div class="oauth-container">
+            <!-- Left Section - Success Message -->
+            <div class="left-section">
+                <div class="content-overlay">
+                    <div class="brand-content">
+                        <i class="fas fa-check-circle welcome-icon" style="color: #10b981;"></i>
+                        <h1>Email Verified!</h1>
+                        <p>Your email has been successfully verified. You can now access all features of your LoanEase account.</p>
+                        <div class="security-features">
+                            <div class="feature">
+                                <i class="fas fa-user-check"></i>
+                                <span>Account Activated</span>
+                            </div>
+                            <div class="feature">
+                                <i class="fas fa-shield-check"></i>
+                                <span>Secure Access</span>
+                            </div>
+                            <div class="feature">
+                                <i class="fas fa-rocket"></i>
+                                <span>Ready to Go</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Section - Continue Options -->
+            <div class="right-section">
+                <div class="form-container">
+                    <div class="connection-header">
+                        <div class="google-logo">
+                            <i class="fas fa-check-circle" style="font-size: 3rem; color: #10b981;"></i>
+                        </div>
+                        <h2>Welcome to LoanEase!</h2>
+                        <p>Your account is now fully verified and ready to use.</p>
+                    </div>
+
+                    {% if messages %}
+                    <div class="messages">
+                        {% for message in messages %}
+                        <div class="message {{ message.tags }}">
+                            <i class="fas {% if message.tags == 'error' %}fa-times-circle{% else %}fa-check-circle{% endif %}"></i>
+                            {{ message }}
+                        </div>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+
+                    <div class="connection-content">
+                        <div class="connected-account">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Email Successfully Verified</span>
+                        </div>
+
+                        <div class="permissions-info">
+                            <h3>What's Next?</h3>
+                            <ul class="permissions-list">
+                                <li>
+                                    <i class="fas fa-tachometer-alt"></i>
+                                    <span>Access your dashboard</span>
+                                </li>
+                                <li>
+                                    <i class="fas fa-calculator"></i>
+                                    <span>Use our loan calculators</span>
+                                </li>
+                                <li>
+                                    <i class="fas fa-file-alt"></i>
+                                    <span>Apply for loans</span>
+                                </li>
+                                <li>
+                                    <i class="fas fa-user-cog"></i>
+                                    <span>Complete your profile</span>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="connection-actions">
+                            <a href="{% url 'Dash' %}" class="continue-btn">
+                                <i class="fas fa-tachometer-alt"></i>
+                                Go to Dashboard
+                            </a>
+                        </div>
+
+                        <div class="alternative-actions">
+                            <a href="{% url 'home' %}" class="back-link">
+                                <i class="fas fa-home"></i>
+                                Back to Home
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="trust-indicators">
+                        <p>Thank you for choosing LoanEase. Your financial journey starts here.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Auto-redirect after 10 seconds if user doesn't click
+        setTimeout(function() {
+            const continueBtn = document.querySelector('.continue-btn');
+            if (continueBtn) {
+                window.location.href = continueBtn.href;
+            }
+        }, 10000);
+
+        // Show countdown
+        let countdown = 10;
+        const countdownInterval = setInterval(function() {
+            countdown--;
+            const continueBtn = document.querySelector('.continue-btn');
+            if (countdown > 0 && continueBtn) {
+                continueBtn.innerHTML = `<i class="fas fa-tachometer-alt"></i> Go to Dashboard (${countdown}s)`;
+            } else {
+                clearInterval(countdownInterval);
+                if (continueBtn) {
+                    continueBtn.innerHTML = '<i class="fas fa-tachometer-alt"></i> Go to Dashboard';
+                }
+            }
+        }, 1000);
+    </script>
+</body>
+</html>

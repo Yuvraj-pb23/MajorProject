@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+{% load static %}
+{% load socialaccount %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complete Your Registration - LoanEase</title>
+    <link rel="stylesheet" href="{% static 'css/oauth.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="logo-container">
+        <img src="{% static 'images/Loaneaselogo.png' %}" alt="Loanease Logo" class="page-logo">
+    </div>
+    
+    <div class="home-button-container">
+        <a href="{% url 'home' %}" class="home-btn">
+            <i class="fas fa-home"></i>
+            <span>Home</span>
+        </a>
+    </div>
+
+    <div class="page-wrapper">
+        <div class="oauth-container">
+            <!-- Left Section - Welcome Message -->
+            <div class="left-section">
+                <div class="content-overlay">
+                    <div class="brand-content">
+                        <i class="fas fa-user-plus welcome-icon"></i>
+                        <h1>Almost There!</h1>
+                        <p>Complete your account setup and start your loan journey with LoanEase.</p>
+                        <div class="signup-steps">
+                            <div class="step completed">
+                                <i class="fas fa-check"></i>
+                                <span>Google Account Verified</span>
+                            </div>
+                            <div class="step active">
+                                <i class="fas fa-user-edit"></i>
+                                <span>Complete Profile</span>
+                            </div>
+                            <div class="step">
+                                <i class="fas fa-rocket"></i>
+                                <span>Start Exploring</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Section - Signup Form -->
+            <div class="right-section">
+                <div class="form-container">
+                    <div class="signup-header">
+                        <div class="profile-preview">
+                            {% if sociallogin.account.extra_data.picture %}
+                            <img src="{{ sociallogin.account.extra_data.picture }}" alt="Profile" class="profile-picture">
+                            {% else %}
+                            <i class="fas fa-user-circle profile-icon"></i>
+                            {% endif %}
+                        </div>
+                        <h2>Complete Your Profile</h2>
+                        <p>We've got some details from Google. Let's finish setting up your account.</p>
+                    </div>
+
+                    {% if form.errors %}
+                    <div class="error-message">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <span>{{ form.errors }}</span>
+                    </div>
+                    {% endif %}
+
+                    {% if messages %}
+                    <div class="messages">
+                        {% for message in messages %}
+                        <div class="message {{ message.tags }}">
+                            <i class="fas {% if message.tags == 'error' %}fa-times-circle{% else %}fa-info-circle{% endif %}"></i>
+                            {{ message }}
+                        </div>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+
+                    <div class="account-details">
+                        <div class="connected-info">
+                            <i class="fas fa-google google-connected"></i>
+                            <div class="account-info">
+                                <span class="account-email">{{ sociallogin.account.extra_data.email }}</span>
+                                <span class="connection-status">Connected via Google</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <form method="post" class="completion-form" id="socialSignupForm">
+                        {% csrf_token %}
+                        {% if redirect_field_value %}
+                        <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+                        {% endif %}
+                        
+                        <div class="form-fields">
+                            <div class="input-group">
+                                <label for="{{ form.email.id_for_label }}">
+                                    <i class="fas fa-envelope"></i>
+                                    Email Address
+                                </label>
+                                {{ form.email }}
+                                {% if form.email.errors %}
+                                <div class="field-error">{{ form.email.errors }}</div>
+                                {% endif %}
+                            </div>
+
+                            {% if form.username %}
+                            <div class="input-group">
+                                <label for="{{ form.username.id_for_label }}">
+                                    <i class="fas fa-user"></i>
+                                    Username
+                                </label>
+                                {{ form.username }}
+                                {% if form.username.errors %}
+                                <div class="field-error">{{ form.username.errors }}</div>
+                                {% endif %}
+                            </div>
+                            {% endif %}
+                        </div>
+
+                        <div class="terms-section">
+                            <div class="checkbox-group">
+                                <input type="checkbox" id="terms-agreement" required>
+                                <label for="terms-agreement">
+                                    I agree to the <a href="{% url 'term' %}" target="_blank">Terms of Service</a> and <a href="#" target="_blank">Privacy Policy</a>
+                                </label>
+                            </div>
+                            <div class="checkbox-group">
+                                <input type="checkbox" id="newsletter-opt">
+                                <label for="newsletter-opt">
+                                    Subscribe to our newsletter for loan tips and updates
+                                </label>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="complete-btn">
+                            <i class="fas fa-check-circle"></i>
+                            Complete Registration
+                        </button>
+                    </form>
+
+                    <div class="alternative-actions">
+                        <a href="{% url 'signup' %}" class="back-link">
+                            <i class="fas fa-arrow-left"></i>
+                            Back to Sign Up Options
+                        </a>
+                    </div>
+
+                    <div class="security-notice">
+                        <i class="fas fa-shield-alt"></i>
+                        <p>Your Google account information is securely stored and will never be shared with third parties.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('socialSignupForm');
+            const completeBtn = document.querySelector('.complete-btn');
+            
+            // Form validation
+            form.addEventListener('submit', function(e) {
+                const termsChecked = document.getElementById('terms-agreement').checked;
+                
+                if (!termsChecked) {
+                    e.preventDefault();
+                    alert('Please accept the Terms of Service to continue.');
+                    return;
+                }
+                
+                // Add loading state
+                completeBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Creating your account...';
+                completeBtn.disabled = true;
+            });
+
+            // Auto-fill username from email if needed
+            const emailField = document.querySelector('input[name="email"]');
+            const usernameField = document.querySelector('input[name="username"]');
+            
+            if (emailField && usernameField && !usernameField.value) {
+                emailField.addEventListener('blur', function() {
+                    if (this.value && !usernameField.value) {
+                        const emailUsername = this.value.split('@')[0];
+                        usernameField.value = emailUsername;
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>

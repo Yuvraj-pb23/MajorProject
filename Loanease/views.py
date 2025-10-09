@@ -68,6 +68,18 @@ def signup(request):
     return render(request,'signup.html')
 def login(request):
     return render(request,'login.html')
+
+def oauth_debug(request):
+    from django.conf import settings
+    from allauth.socialaccount import providers
+    context = {
+        'settings': settings,
+        'socialaccount': {
+            'providers': providers.registry.get_list(),
+        }
+    }
+    return render(request, 'oauth_debug.html', context)
+
 def Dashboard(request):
     return render(request,'Dashboard/Dash.html')
 
