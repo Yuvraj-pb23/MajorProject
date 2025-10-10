@@ -15,6 +15,7 @@
     ></script>
     <title>Document</title>
     <link rel="stylesheet" href="{%static 'css/Dashboard/Dash.css'%}" />
+    <link rel="stylesheet" href="{%static 'css/Dashboard/settings.css'%}" />
   </head>
   <body>
     <div class="Container-main">
@@ -30,8 +31,52 @@
 
           <div class="options">
             <span><h3>Help</h3></span>
-            <i class="fa-solid fa-gear"></i>
-            <i class="fa-solid fa-user"></i>
+            
+            <!-- Settings Dropdown -->
+            <div class="dropdown-container">
+              <i class="fa-solid fa-gear dropdown-trigger" onclick="toggleDropdown('settings-dropdown')"></i>
+              <div class="dropdown-menu" id="settings-dropdown">
+                <div class="dropdown-header">
+                  <i class="fa-solid fa-cog"></i>
+                  <span>Settings</span>
+                </div>
+                <hr class="dropdown-divider">
+                <a href="#" class="dropdown-item" onclick="showSection('profile-settings')">
+                  <i class="fa-solid fa-user-cog"></i>
+                  <span>Profile Settings</span>
+                </a>
+                <a href="#" class="dropdown-item" onclick="showSection('account-settings')">
+                  <i class="fa-solid fa-key"></i>
+                  <span>Account Settings</span>
+                </a>
+                <hr class="dropdown-divider">
+                <a href="#" class="dropdown-item danger" onclick="confirmDeleteAccount()">
+                  <i class="fa-solid fa-trash"></i>
+                  <span>Delete Account</span>
+                </a>
+              </div>
+            </div>
+            
+            <!-- User Dropdown -->
+            <div class="dropdown-container">
+              <i class="fa-solid fa-user dropdown-trigger" onclick="toggleDropdown('user-dropdown')"></i>
+              <div class="dropdown-menu" id="user-dropdown">
+                <div class="dropdown-header">
+                  <div class="user-avatar">
+                    <i class="fa-solid fa-user-circle"></i>
+                  </div>
+                  <div class="user-info">
+                    <span class="user-name">{{ user.first_name|default:user.username }}</span>
+                    <span class="user-email">{{ user.email }}</span>
+                  </div>
+                </div>
+                <hr class="dropdown-divider">
+                <a href="/accounts/logout/" class="dropdown-item logout" onclick="confirmLogout(event)">
+                  <i class="fa-solid fa-sign-out-alt"></i>
+                  <span>Logout</span>
+                </a>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -455,6 +500,155 @@
                   </div>
                 </div>
               </div>
+
+              <!-- Profile Settings Section -->
+              <div id="profile-settings" class="dashboard-section" style="display: none;">
+                <h2>Profile Settings</h2>
+                <div class="settings-container">
+                  <div class="settings-form">
+                    <div class="form-section">
+                      <h3>Personal Information</h3>
+                      <form class="profile-form">
+                        <div class="form-row">
+                          <div class="form-group">
+                            <label for="firstName">First Name</label>
+                            <input type="text" id="firstName" name="firstName" value="{{ user.first_name }}" placeholder="Enter first name">
+                          </div>
+                          <div class="form-group">
+                            <label for="lastName">Last Name</label>
+                            <input type="text" id="lastName" name="lastName" value="{{ user.last_name }}" placeholder="Enter last name">
+                          </div>
+                        </div>
+                        <div class="form-row">
+                          <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" value="{{ user.email }}" readonly>
+                            <small class="form-text">Email cannot be changed for security reasons</small>
+                          </div>
+                          <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" name="phone" placeholder="Enter phone number">
+                          </div>
+                        </div>
+                        <div class="form-row">
+                          <div class="form-group full-width">
+                            <label for="address">Address</label>
+                            <textarea id="address" name="address" rows="3" placeholder="Enter your address"></textarea>
+                          </div>
+                        </div>
+                        <div class="form-actions">
+                          <button type="button" class="btn-secondary" onclick="resetForm()">Reset</button>
+                          <button type="submit" class="btn-primary" onclick="saveProfile(event)">Save Changes</button>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Account Settings Section -->
+              <div id="account-settings" class="dashboard-section" style="display: none;">
+                <h2>Account Settings</h2>
+                <div class="settings-container">
+                  <div class="settings-sections">
+                    
+                    <!-- Security Settings -->
+                    <div class="settings-card">
+                      <div class="card-header">
+                        <i class="fa-solid fa-shield-alt"></i>
+                        <h3>Security & Privacy</h3>
+                      </div>
+                      <div class="card-content">
+                        <div class="setting-item">
+                          <div class="setting-info">
+                            <h4>Change Password</h4>
+                            <p>Update your password to keep your account secure</p>
+                          </div>
+                          <button class="btn-outline" onclick="showChangePassword()">Change Password</button>
+                        </div>
+                        <div class="setting-item">
+                          <div class="setting-info">
+                            <h4>Two-Factor Authentication</h4>
+                            <p>Add an extra layer of security to your account</p>
+                          </div>
+                          <button class="btn-outline" onclick="setup2FA()">Setup 2FA</button>
+                        </div>
+                        <div class="setting-item">
+                          <div class="setting-info">
+                            <h4>Login Sessions</h4>
+                            <p>Manage your active sessions across devices</p>
+                          </div>
+                          <button class="btn-outline" onclick="manageSession()">View Sessions</button>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Notification Settings -->
+                    <div class="settings-card">
+                      <div class="card-header">
+                        <i class="fa-solid fa-bell"></i>
+                        <h3>Notifications</h3>
+                      </div>
+                      <div class="card-content">
+                        <div class="setting-item">
+                          <div class="setting-info">
+                            <h4>Email Notifications</h4>
+                            <p>Receive updates about your loan applications</p>
+                          </div>
+                          <div class="toggle-switch">
+                            <input type="checkbox" id="emailNotif" checked>
+                            <label for="emailNotif"></label>
+                          </div>
+                        </div>
+                        <div class="setting-item">
+                          <div class="setting-info">
+                            <h4>SMS Notifications</h4>
+                            <p>Get important updates via text message</p>
+                          </div>
+                          <div class="toggle-switch">
+                            <input type="checkbox" id="smsNotif">
+                            <label for="smsNotif"></label>
+                          </div>
+                        </div>
+                        <div class="setting-item">
+                          <div class="setting-info">
+                            <h4>Marketing Communications</h4>
+                            <p>Receive promotional offers and updates</p>
+                          </div>
+                          <div class="toggle-switch">
+                            <input type="checkbox" id="marketingNotif">
+                            <label for="marketingNotif"></label>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Account Actions -->
+                    <div class="settings-card danger-card">
+                      <div class="card-header">
+                        <i class="fa-solid fa-exclamation-triangle"></i>
+                        <h3>Danger Zone</h3>
+                      </div>
+                      <div class="card-content">
+                        <div class="setting-item">
+                          <div class="setting-info">
+                            <h4>Export Account Data</h4>
+                            <p>Download a copy of all your account data</p>
+                          </div>
+                          <button class="btn-outline" onclick="exportData()">Export Data</button>
+                        </div>
+                        <div class="setting-item">
+                          <div class="setting-info">
+                            <h4>Delete Account</h4>
+                            <p>Permanently delete your account and all associated data</p>
+                          </div>
+                          <button class="btn-danger" onclick="confirmDeleteAccount()">Delete Account</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -474,6 +668,68 @@
     </div>
 
     <script>
+      // Dropdown Functions
+      function toggleDropdown(dropdownId) {
+        // Close all other dropdowns first
+        const allDropdowns = document.querySelectorAll('.dropdown-menu');
+        allDropdowns.forEach(dropdown => {
+          if (dropdown.id !== dropdownId) {
+            dropdown.classList.remove('show');
+          }
+        });
+        
+        // Toggle the clicked dropdown
+        const dropdown = document.getElementById(dropdownId);
+        dropdown.classList.toggle('show');
+      }
+
+      // Close dropdowns when clicking outside
+      document.addEventListener('click', function(event) {
+        const dropdowns = document.querySelectorAll('.dropdown-container');
+        let clickedInsideDropdown = false;
+        
+        dropdowns.forEach(container => {
+          if (container.contains(event.target)) {
+            clickedInsideDropdown = true;
+          }
+        });
+        
+        if (!clickedInsideDropdown) {
+          document.querySelectorAll('.dropdown-menu').forEach(dropdown => {
+            dropdown.classList.remove('show');
+          });
+        }
+      });
+
+      // Confirmation Functions
+      function confirmLogout(event) {
+        event.preventDefault();
+        if (confirm('Are you sure you want to logout?')) {
+          showLoader('Logging out...');
+          // Redirect to logout URL after a brief delay for UX
+          setTimeout(() => {
+            window.location.href = event.target.closest('a').href;
+          }, 1000);
+        }
+      }
+
+      function confirmDeleteAccount() {
+        if (confirm('⚠️ WARNING: This action cannot be undone!\n\nAre you absolutely sure you want to delete your account?\n\nThis will permanently remove:\n• All your loan applications\n• Your profile information\n• All associated data\n\nType "DELETE" to confirm:')) {
+          const confirmation = prompt('Please type "DELETE" to confirm account deletion:');
+          if (confirmation === 'DELETE') {
+            showLoader('Processing account deletion...');
+            showToast('Account deletion initiated. Please check your email for final confirmation.', 'warning');
+            // Here you would typically make an API call to delete the account
+            setTimeout(() => {
+              hideLoader();
+              showToast('Account deletion request submitted successfully', 'info');
+            }, 2000);
+          } else if (confirmation !== null) {
+            showToast('Account deletion cancelled - confirmation text did not match', 'info');
+          }
+        }
+      }
+
       // Navigation Functions
       function toggleMenu(menuId) {
         const menuItems = document.getElementById(menuId);
@@ -890,6 +1146,47 @@
           }
         }, 30000);
       });
+
+      // Settings Functions
+      function saveProfile(event) {
+        event.preventDefault();
+        showLoader('Saving profile...');
+        
+        // Simulate API call
+        setTimeout(() => {
+          hideLoader();
+          showToast('Profile updated successfully!', 'success');
+        }, 1500);
+      }
+
+      function resetForm() {
+        if (confirm('Are you sure you want to reset all changes?')) {
+          document.querySelector('.profile-form').reset();
+          showToast('Form reset successfully', 'info');
+        }
+      }
+
+      function showChangePassword() {
+        showToast('Change password feature coming soon!', 'info');
+      }
+
+      function setup2FA() {
+        showToast('Two-factor authentication setup coming soon!', 'info');
+      }
+
+      function manageSession() {
+        showToast('Session management feature coming soon!', 'info');
+      }
+
+      function exportData() {
+        if (confirm('Export all your account data? This may take a few minutes.')) {
+          showLoader('Preparing data export...');
+          setTimeout(() => {
+            hideLoader();
+            showToast('Data export will be emailed to you within 24 hours', 'success');
+          }, 2000);
+        }
+      }
 
       // Real-time form validation
       document.addEventListener('input', function(e) {
